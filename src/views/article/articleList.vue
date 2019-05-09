@@ -7,7 +7,7 @@
         <el-input
           v-model="formInline.title"
           placeholder="请输入文章标题"
-          style="width:200px;"
+          style="width:210px;"
           size="small"
           @keyup.enter.native="searchClick"
         />
