@@ -22,7 +22,7 @@ npm install
 ### 开发运行前端
 ```
 npm start 
-npm server/server 
+node server/server 
 ```
 
 ### 打包
