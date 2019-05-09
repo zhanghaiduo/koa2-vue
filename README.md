@@ -43,3 +43,4 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 # koa2-vue
+# koa2-vue
