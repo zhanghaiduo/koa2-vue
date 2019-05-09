@@ -19,7 +19,7 @@
 npm install
 ```
 
-### 开发运行前端
+### 开发运行
 ```
 npm start 
 node server/server 
