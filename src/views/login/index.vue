@@ -74,14 +74,14 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+        callback(new Error('输入正常的账号'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码不小于6位'))
       } else {
         callback()
       }
@@ -124,11 +124,15 @@ export default {
       })
     },
     async handleLogin(val) {
-      const ok = await this.$refs.loginForm.validate()
-      if (ok) {
-        const data = await login(this.loginForm)
-        setToken(data.token)
-        this.$router.push({ path: this.redirect || '/' })
+      try {
+        const ok = await this.$refs.loginForm.validate()
+        if (ok) {
+          const data = await login(this.loginForm)
+          setToken(data.token)
+          this.$router.push({ path: this.redirect || '/' })
+        }
+      } catch {
+        console.log('err')
       }
     }
 

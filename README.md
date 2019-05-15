@@ -11,7 +11,7 @@
     - 软文管理
     - 商品管理
     - 系统管理
-    - 持续开发中...
+    - 持续开发中....
 
 
 ## Project setup
@@ -42,4 +42,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-# koa2-vue

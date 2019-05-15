@@ -7,7 +7,7 @@
         <el-input
           v-model="formInline.title"
           placeholder="请输入文章标题"
-          style="width:200px;"
+          style="width:210px;"
           size="small"
           @keyup.enter.native="searchClick"
         />
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { getList, del } from '@/api/article/article_list'
+import { getList, del } from '@/api/article/articleList'
 export default {
   name: 'ArticleList',
   data() {

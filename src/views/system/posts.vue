@@ -1,6 +1,6 @@
 <template>
   <div class="app-container contractContainer">
-    暂时没用...
+    暂未开发，先去数据库加...
   </div>
 </template>
 

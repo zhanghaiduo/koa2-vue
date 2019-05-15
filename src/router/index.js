@@ -85,45 +85,51 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/goods',
-    component: Layout,
-    redirect: '/goods/GoodsType',
-    name: 'Goods',
-    meta: { title: '商品管理', icon: 'example' },
-    children: [
-      {
-        path: 'GoodsList',
-        component: () => import('@/views/goods/goodsList'),
-        name: 'GoodsList',
-        meta: { title: '商品列表' }
-      },
-      {
-        path: 'GoodsType',
-        name: 'GoodsType',
-        component: () => import('@/views/goods/goodsType'),
-        meta: { title: '商品类别' }
-      }
-    ]
-  },
+  // {
+  //   path: '/goods',
+  //   component: Layout,
+  //   redirect: '/goods/GoodsType',
+  //   name: 'Goods',
+  //   meta: { title: '商品管理', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'GoodsList',
+  //       component: () => import('@/views/goods/goodsList'),
+  //       name: 'GoodsList',
+  //       meta: { title: '商品列表' }
+  //     },
+  //     {
+  //       path: 'GoodsType',
+  //       name: 'GoodsType',
+  //       component: () => import('@/views/goods/goodsType'),
+  //       meta: { title: '商品类别' }
+  //     }
+  //   ]
+  // },
   {
     path: '/system',
     component: Layout,
     redirect: '/system/userInfo',
-    name: 'system',
+    name: 'System',
     meta: { title: '系统管理', icon: 'user' },
     children: [
       {
-        path: 'userInfo',
+        path: 'UserInfo',
         component: () => import('@/views/system/userInfo'),
         name: 'userInfo',
         meta: { title: '个人信息' }
       },
       {
-        path: 'userList',
-        name: 'userList',
+        path: 'UserList',
+        name: 'UserList',
         component: () => import('@/views/system/userList'),
         meta: { title: '用户列表' }
+      },
+      {
+        path: 'Posts',
+        name: 'Posts',
+        component: () => import('@/views/system/posts'),
+        meta: { title: '职位列表' }
       }
     ]
   },
