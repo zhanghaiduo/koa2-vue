@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { getList, del } from '@/api/article/article_list'
+import { getList, del } from '@/api/article/articleList'
 export default {
   name: 'ArticleList',
   data() {

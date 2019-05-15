@@ -1,6 +1,6 @@
 const moment = require('moment')
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
+  return sequelize.define('account', {
     // ID
     id: {
       type: DataTypes.INTEGER,
@@ -20,10 +20,28 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       field: 'password'
     },
+    // 姓名
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'name'
+    },
+    // 部门
+    posts: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'posts'
+    },
+    // 部门ID
+    posts_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      field: 'posts_id'
+    },
     // token
     token: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       field: 'token'
     },
     // 创建时间
