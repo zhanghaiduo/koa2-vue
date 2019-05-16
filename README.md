@@ -1,17 +1,16 @@
 # koa2-vue
-- 个人网站后台管理系统
+- 洞见人才库
 - 技术栈：
     - 后端主要技术栈：Node.js + Koa2 + Sequelize + jsonwebtoken.
     - 前端主要技术栈：Vue.js + ElementUi + es6/es7
     - 后台系统模板使用 vue-admin-template 
     - 数据库：mySql
-    - 前台展示主页待开发...
 - 功能模块：
     - 登录（JWT验证）
-    - 软文管理
-    - 商品管理
+    - 简历列表（按职位划分权限）
     - 系统管理
-    - 持续开发中....
+    - 用户列表
+    - 职位列表....
 
 
 ## Project setup
