@@ -14,11 +14,6 @@ class AccountModel {
      * @returns {Promise<*>}
      */
   static async createAccount(data) {
-    // 创建用户，暂时不开放...
-    // return await Account.create({
-    //   username: data.username, // 账号
-    //   password: data.password// 密码
-    // })
     const { username, password, name, posts_id } = data
     return await Account.create({ username, password, name, posts_id })
   }

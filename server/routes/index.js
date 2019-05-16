@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const ArticleController = require('../controller/Article')
+const ResumeController = require('../controller/Resume')
 const AccountController = require('../controller/Account')
 const PostsController = require('../controller/Posts')
 // 服务器判断token是否是合法的
@@ -22,17 +22,17 @@ subRouter.post('/superAuth/account_del', checkToken, AccountController.account_d
 // 改
 subRouter.post('/superAuth/account_update', checkToken, AccountController.account_update)
 
-// 软文----------
+// 简历列表----------
 // 增
-subRouter.post('/article_create', checkToken, ArticleController.article_create)
+subRouter.post('/resume_create', checkToken, ResumeController.resume_create)
 // 查
-subRouter.post('/article_list', checkToken, ArticleController.article_list)
+subRouter.post('/resume_list', checkToken, ResumeController.resume_list)
 // 查详情
-subRouter.post('/article_detail', ArticleController.article_detail)
+subRouter.post('/resume_detail', ResumeController.resume_detail)
 // 删
-subRouter.post('/article_del', checkToken, ArticleController.article_del)
+subRouter.post('/resume_del', checkToken, ResumeController.resume_del)
 // 改
-// subRouter.post('/article_update', checkToken, ArticleController.article_update)
+subRouter.post('/resume_update', checkToken, ResumeController.resume_update)
 
 // 部门----------
 // 增

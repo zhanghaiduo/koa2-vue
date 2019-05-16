@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { setToken, getToken, removeToken, TokenKey } from '@/utils/auth'
+import { getToken, removeToken, TokenKey } from '@/utils/auth'
 import { transform } from '@/utils/transformRequest'
 const service = axios.create({
   //
@@ -44,7 +44,6 @@ service.interceptors.response.use(
      * code为非1是抛错 可结合自己业务进行修改
      */
     if (getToken()) {
-      setToken(getToken())
     }// 每次请求刷新cookie时间
     const res = response.data
     if (res.code && res.code !== 1) {
@@ -59,15 +58,17 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error) // for debug
-    if (error !== 'Cancel') {
+    Message({ message: error, type: 'error', duration: 5 * 1000 })
+    if (error === 'Cancel') {
+      return Promise.reject('重复点击请求关闭', error)
+    } else if (error.includes('err')) {
+      return Promise.reject(error)
+    } else {
       Message({
         message: error.msg && error.msg.includes('timeout') ? '请求超时，请稍后再试哦' : error.msg,
         type: 'error',
         duration: 5 * 1000
       })
-      return Promise.reject(error)
-    } else {
-      return Promise.reject('重复点击请求关闭', error)
     }
   }
 )

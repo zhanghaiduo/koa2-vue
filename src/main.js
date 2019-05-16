@@ -20,7 +20,20 @@ Vue.use(ElementUI)
 // Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
-
+Vue.filter('normalDate', function(value) {
+  function padDate(va) {
+    va = va < 10 ? '0' + va : va
+    return va
+  }
+  var val = new Date(value)
+  var year = val.getFullYear()
+  var month = padDate(val.getMonth() + 1)
+  var day = padDate(val.getDate())
+  var hour = padDate(val.getHours())
+  var minutes = padDate(val.getMinutes())
+  var seconds = padDate(val.getSeconds())
+  return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds
+})
 new Vue({
   el: '#app',
   router,

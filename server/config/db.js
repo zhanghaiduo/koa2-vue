@@ -4,6 +4,9 @@ const sequelize = new Sequelize('cms_koa2', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   operatorsAliases: true,
+  'define': {
+    'timestamps': false // 去除createAt updateAt
+  },
   dialectOptions: {
     // 字符集
     charset: 'utf8',

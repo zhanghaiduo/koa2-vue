@@ -17,7 +17,7 @@
       <br>
       <!-- 表格 -->
       <div>
-        <el-table v-loading.body="listLoading" :data="list" element-loading-text="Loading" border size="mini">
+        <el-table v-loading.body="listLoading" :data="list" element-loading-text="Loading" border size="mini" highlight-current-row>
           <el-table-column align="center" label="序号" width="50">
             <template slot-scope="scope">
               <span class="indexColor">{{ scope.$index+1+(pageObj.currentPage-1)*pageObj.pageSize }}</span>
@@ -110,7 +110,7 @@ export default {
       pageObj: {
         currentPage: 1,
         totalDataNumber: 0,
-        pageSize: 5 // 每页多少条
+        pageSize: 10 // 每页多少条
       },
       formInline: {
         name: ''

@@ -61,30 +61,30 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'form' }
     }]
   },
-  {
-    path: '/Article',
-    component: Layout,
-    redirect: '/article/articleList',
-    name: 'Article',
-    meta: { title: '软文管理', icon: 'form' },
-    children: [
-      {
-        path: 'ArticleList',
-        component: () => import('@/views/article/articleList'),
-        name: 'ArticleList',
-        meta: { title: '软文列表' }
-      },
-      {
-        path: 'ArticleType',
-        name: 'ArticleType',
-        component: () => import('@/views/article/articleType'),
-        meta: { title: '软文类别' }
-      }
-    ]
-  },
+  // {
+  //   path: '/Article',
+  //   component: Layout,
+  //   redirect: '/article/articleList',
+  //   name: 'Article',
+  //   meta: { title: '软文管理', icon: 'form' },
+  //   children: [
+  //     {
+  //       path: 'ArticleList',
+  //       component: () => import('@/views/article/articleList'),
+  //       name: 'ArticleList',
+  //       meta: { title: '软文列表' }
+  //     },
+  //     {
+  //       path: 'ArticleType',
+  //       name: 'ArticleType',
+  //       component: () => import('@/views/article/articleType'),
+  //       meta: { title: '软文类别' }
+  //     }
+  //   ]
+  // },
   // {
   //   path: '/goods',
   //   component: Layout,

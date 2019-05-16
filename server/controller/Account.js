@@ -1,6 +1,7 @@
 const AccountModel = require('../model/AccountModel')
 // 引入创建token的方法
 const createToken = require('../token/createToken')
+const PostsModel = require('../model/PostsModel')// 查职位
 class accountController {
   /**
      * 创建用户
@@ -13,6 +14,8 @@ class accountController {
     const n = await AccountModel.getAccountByName(data.username)
     if (!n) {
       try {
+        const p = await PostsModel.getPostsDetail(data.posts_id)
+        data.posts = p.name
         await AccountModel.createAccount(data)
         ctx.body = {
           code: 1,
@@ -43,7 +46,7 @@ class accountController {
     const doc = await AccountModel.getAccountByName(username)
     if (doc) {
       if (doc.password === password) {
-        const token = createToken(username, doc.id)
+        const token = createToken(doc)
         // 更新 用户数据库的token
         // await AccountModel.updateAccountToken(doc.id, { token })
         ctx.status = 200
@@ -51,7 +54,10 @@ class accountController {
           code: 1,
           msg: '登录成功',
           token: token, // 用户的token信息
-          username: doc.username // 登录的用户名
+          username: doc.username, // 登录的用户名
+          name: doc.name,
+          posts: doc.posts,
+          posts_id: doc.posts_id
         }
       } else {
         // 用户名不存在
@@ -153,10 +159,12 @@ class accountController {
      * @returns {Promise.<void>}
      */
   static async account_update(ctx) {
-    const id = ctx.request.body.id
-    if (id) {
+    const data = ctx.request.body
+    const p = await PostsModel.getPostsDetail(data.posts_id)
+    data.posts = p.name
+    if (data.id) {
       try {
-        await AccountModel.updateAccount(id, ctx.request.body)
+        await AccountModel.updateAccount(data.id, data)
         ctx.body = {
           code: 1,
           msg: '更新成功'
