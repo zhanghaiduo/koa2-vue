@@ -19,7 +19,6 @@ class resumeController {
         msg: '创建成功'
       }
     } catch (err) {
-      console.log(err)
       ctx.body = {
         code: -1,
         data: err,
@@ -43,10 +42,10 @@ class resumeController {
         data: data
       }
     } catch (err) {
-      console.log(err)
       ctx.body = {
+        data: err,
         code: -1,
-        msg: err
+        msg: '查询失败'
       }
     }
   }
@@ -68,6 +67,7 @@ class resumeController {
       } catch (err) {
         ctx.body = {
           code: -1,
+          data: err,
           msg: '无数据'
         }
       }
@@ -96,6 +96,7 @@ class resumeController {
       } catch (err) {
         ctx.body = {
           code: -1,
+          data: err,
           msg: '失败'
         }
       }
@@ -125,6 +126,7 @@ class resumeController {
       } catch (err) {
         ctx.body = {
           code: -1,
+          data: err,
           msg: '更新失败'
         }
       }

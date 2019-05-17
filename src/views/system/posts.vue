@@ -18,7 +18,7 @@
       <!-- 表格 -->
       <div>
         <el-table v-loading.body="listLoading" :data="list" element-loading-text="Loading" border size="mini" highlight-current-row>
-          <el-table-column align="center" label="ID" prop="id" />
+          <el-table-column align="center" label="ID" prop="id" width="50" />
           <el-table-column align="center" label="职位" prop="name" />
           <el-table-column align="center" label="备注" prop="remark" />
           <el-table-column align="center" label="创建时间" prop="createdAt" />

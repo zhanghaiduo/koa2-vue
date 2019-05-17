@@ -92,8 +92,8 @@ class accountController {
         data: data
       }
     } catch (err) {
-      console.log(err)
       ctx.body = {
+        data: err,
         code: -1,
         msg: '无数据'
       }
@@ -116,6 +116,7 @@ class accountController {
         }
       } catch (err) {
         ctx.body = {
+          data: err,
           code: -1,
           msg: '无数据'
         }
@@ -143,6 +144,7 @@ class accountController {
         }
       } catch (err) {
         ctx.body = {
+          data: err,
           code: -1,
           msg: '删除失败'
         }
@@ -172,6 +174,7 @@ class accountController {
         }
       } catch (err) {
         ctx.body = {
+          data: err,
           code: -1,
           msg: '更新失败'
         }
