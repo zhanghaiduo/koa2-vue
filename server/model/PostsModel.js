@@ -13,8 +13,8 @@ class PostsModel {
      * @param data
      */
   static async createPosts(data) {
-    // const { title, author, content, type } = data
-    // return await Posts.create({ title, author, content, type })
+    const { name, remark } = data
+    return await Posts.create({ name, remark })
   }
   /**
      * 部门列表
@@ -42,11 +42,23 @@ class PostsModel {
     })
   }
   /**
+     * 查询职位名是否存在
+     * @param name  用户名
+     * @returns {Promise<Model>}
+     */
+  static async getPostsByName(name) {
+    return await Posts.findOne({
+      where: {
+        name
+      }
+    })
+  }
+  /**
      * 改
      * @param id
      */
   static async updatePosts(id, data) {
-    return await Posts.destroy({
+    return await Posts.update(data, {
       where: {
         id
       }

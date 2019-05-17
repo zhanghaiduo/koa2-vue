@@ -57,7 +57,8 @@ class accountController {
           username: doc.username, // 登录的用户名
           name: doc.name,
           posts: doc.posts,
-          posts_id: doc.posts_id
+          posts_id: doc.posts_id,
+          id: doc.id
         }
       } else {
         // 用户名不存在

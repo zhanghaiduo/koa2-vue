@@ -7,7 +7,6 @@
     />
 
     <breadcrumb class="breadcrumb-container" />
-
     <div class="right-menu">
       <el-dropdown
         class="avatar-container"
@@ -15,7 +14,7 @@
       >
         <div class="avatar-wrapper">
           <img
-            src="https://i2.hoopchina.com.cn/hupuapp/bbs/106159971571333/thread_106159971571333_20190321190052_s_287064_w_320_h_320_90605.gif"
+            src="@/assets/images/c.gif"
             class="user-avatar"
           >
           <i class="el-icon-caret-bottom" />
@@ -24,21 +23,15 @@
           slot="dropdown"
           class="user-dropdown"
         >
-          <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
-          </router-link>
           <span @click="logout">
-            <el-dropdown-item divided>
-              <span
-                style="display:block;"
-              >Log Out</span>
+            <el-dropdown-item>
+              <span style="display:block;">退出</span>
             </el-dropdown-item>
           </span>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <div class="right-menu name-item"> {{ USER_INFO.id===1 ?'超级管理员':USER_INFO.posts }} - {{ USER_INFO.name }}</div>
   </div>
 </template>
 
@@ -52,6 +45,11 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  data() {
+    return {
+      USER_INFO: JSON.parse(localStorage.getItem('USER_INFO'))
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar'
@@ -64,7 +62,6 @@ export default {
     async logout() {
       removeToken()
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-      // await this.$store.dispatch('user/logout')
     }
   }
 }
@@ -145,6 +142,11 @@ export default {
         }
       }
     }
+  }
+  .name-item {
+    font-size: 14px;
+    color: #fff;
+    margin: 0 15px;
   }
 }
 </style>

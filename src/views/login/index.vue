@@ -10,7 +10,7 @@
     >
 
       <div class="title-container">
-        <h3 class="title">后台</h3>
+        <h3 class="title">洞见人才库 v2.0</h3>
       </div>
 
       <el-form-item prop="username">
@@ -56,19 +56,15 @@
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
-      >Login</el-button>
-
+      >登录</el-button>
     </el-form>
   </div>
 </template>
 
 <script>
 import { validUsername } from '@/utils/validate'
-// import md5 from 'js-md5'
-// import { isvalidUsername } from '@/utils/validate'
-// import { JSEncrypt } from 'jsencrypt'
 import { login } from '@/api/login/login'
-import { setToken } from '@/utils/auth'
+import { setToken, setUserInfo } from '@/utils/auth'
 export default {
   name: 'Login',
   data() {
@@ -124,14 +120,18 @@ export default {
       })
     },
     async handleLogin(val) {
+      this.loading = true
       try {
         const ok = await this.$refs.loginForm.validate()
         if (ok) {
           const data = await login(this.loginForm)
-          setToken(data.token)
-          this.$router.push({ path: this.redirect || '/' })
+          setToken(data.token)// 存token
+          setUserInfo(data)// 存用户信息
+          location.reload()
+          // this.$router.push({ path: this.redirect || '/' })
         }
       } catch {
+        this.loading = false
         console.log('err')
       }
     }

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { superAuthRouter } from './superAuthRouter'
 
 Vue.use(Router)
 
@@ -64,79 +65,12 @@ export const constantRoutes = [
       meta: { title: '首页', icon: 'form' }
     }]
   },
-  // {
-  //   path: '/Article',
-  //   component: Layout,
-  //   redirect: '/article/articleList',
-  //   name: 'Article',
-  //   meta: { title: '软文管理', icon: 'form' },
-  //   children: [
-  //     {
-  //       path: 'ArticleList',
-  //       component: () => import('@/views/article/articleList'),
-  //       name: 'ArticleList',
-  //       meta: { title: '软文列表' }
-  //     },
-  //     {
-  //       path: 'ArticleType',
-  //       name: 'ArticleType',
-  //       component: () => import('@/views/article/articleType'),
-  //       meta: { title: '软文类别' }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/goods',
-  //   component: Layout,
-  //   redirect: '/goods/GoodsType',
-  //   name: 'Goods',
-  //   meta: { title: '商品管理', icon: 'example' },
-  //   children: [
-  //     {
-  //       path: 'GoodsList',
-  //       component: () => import('@/views/goods/goodsList'),
-  //       name: 'GoodsList',
-  //       meta: { title: '商品列表' }
-  //     },
-  //     {
-  //       path: 'GoodsType',
-  //       name: 'GoodsType',
-  //       component: () => import('@/views/goods/goodsType'),
-  //       meta: { title: '商品类别' }
-  //     }
-  //   ]
-  // },
-  {
-    path: '/system',
-    component: Layout,
-    redirect: '/system/userInfo',
-    name: 'System',
-    meta: { title: '系统管理', icon: 'user' },
-    children: [
-      {
-        path: 'UserInfo',
-        component: () => import('@/views/system/userInfo'),
-        name: 'userInfo',
-        meta: { title: '个人信息' }
-      },
-      {
-        path: 'UserList',
-        name: 'UserList',
-        component: () => import('@/views/system/userList'),
-        meta: { title: '用户列表' }
-      },
-      {
-        path: 'Posts',
-        name: 'Posts',
-        component: () => import('@/views/system/posts'),
-        meta: { title: '职位列表' }
-      }
-    ]
-  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
-
+if (localStorage.getItem('USER_INFO') && JSON.parse(localStorage.getItem('USER_INFO')).id === 1) {
+  constantRoutes.push(superAuthRouter)
+}
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),

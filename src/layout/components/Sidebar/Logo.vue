@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      title: '后台开发中ing',
+      title: '洞见人才库',
       logo: 'http://stat.i3020.com/sms/favicon.ico'
     }
   }

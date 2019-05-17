@@ -66,3 +66,8 @@ div:focus {
 .pull-right{
   float: right;
 }
+// 普通一行搜索带页码 表格最大高度
+.el-table__body-wrapper{
+  overflow-y:auto;
+  max-height:calc(100vh - 270px);
+}

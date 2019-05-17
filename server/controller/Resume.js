@@ -34,7 +34,6 @@ class resumeController {
      */
   static async resume_list(ctx) {
     const tokenContent = await getToken(ctx)
-    console.log(tokenContent.id, '11111111')
     const dataObj = ctx.request.body
     try {
       const data = await ResumeModel.getResumeList(dataObj, tokenContent.id, tokenContent.posts_id)
@@ -47,7 +46,7 @@ class resumeController {
       console.log(err)
       ctx.body = {
         code: -1,
-        msg: '无数据'
+        msg: err
       }
     }
   }

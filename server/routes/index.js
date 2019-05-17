@@ -44,7 +44,7 @@ subRouter.post('/superAuth/posts_detail', PostsController.posts_detail)
 // 删
 subRouter.post('/superAuth/posts_del', checkToken, PostsController.posts_del)
 // 改
-// subRouter.post('/superAuth/posts_update', checkToken, PostsController.posts_update)
+subRouter.post('/superAuth/posts_update', checkToken, PostsController.posts_update)
 
 module.exports = subRouter
 

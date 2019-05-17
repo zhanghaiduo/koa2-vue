@@ -8,8 +8,29 @@ class postsController {
      */
 
   static async posts_create(ctx) {
-    // const req = ctx.request.body
-    //
+    const data = ctx.request.body
+    const n = await PostsModel.getPostsByName(data.name)
+    if (!n) {
+      try {
+        await PostsModel.createPosts(data)
+        ctx.body = {
+          code: 1,
+          msg: '创建成功'
+        }
+      } catch (err) {
+        console.log(err)
+        ctx.body = {
+          code: -1,
+          data: err,
+          msg: '创建失败'
+        }
+      }
+    } else {
+      ctx.body = {
+        code: -1,
+        msg: '职位已存在'
+      }
+    }
   }
   /**
      * 列表
@@ -86,6 +107,34 @@ class postsController {
       ctx.body = {
         code: -1,
         msg: 'id必传'
+      }
+    }
+  }
+  /**
+     * 改
+     * @param ctx
+     * @returns {Promise.<void>}
+     */
+  static async posts_update(ctx) {
+    const data = ctx.request.body
+    const n = await PostsModel.getPostsByName(data.name)
+    if (!n || (n.dataValues.id * 1 === data.id * 1)) { // 更新名字不能和别的重复
+      try {
+        await PostsModel.updatePosts(data.id, data)
+        ctx.body = {
+          code: 1,
+          msg: '更新成功'
+        }
+      } catch (err) {
+        ctx.body = {
+          code: -1,
+          msg: '更新失败'
+        }
+      }
+    } else {
+      ctx.body = {
+        code: -1,
+        msg: '职位名已存在'
       }
     }
   }

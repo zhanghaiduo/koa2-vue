@@ -11,9 +11,11 @@ export function setToken(token) {
 }
 
 export function removeToken() {
+  localStorage.removeItem('USER_INFO')
   return Cookies.remove(TokenKey)
 }
-export function getLocalstorageInfo() {
-  return localStorage.getItem('info')
+export function setUserInfo(data) {
+  return localStorage.setItem('USER_INFO', JSON.stringify(data))
 }
+
 export { TokenKey }

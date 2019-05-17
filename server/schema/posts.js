@@ -14,6 +14,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       field: 'name'
     },
+    // 备注
+    remark: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'remark'
+    },
     // 创建时间
     createdAt: {
       type: DataTypes.DATE,

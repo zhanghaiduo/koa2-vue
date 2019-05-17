@@ -21,20 +21,24 @@ class ResumeModel {
      * @param name
      */
   static async getResumeList(dataObj, id, posts_id) {
-    return await Resume.findAndCountAll({
+    const sq = {
       where: {
         name: {
           like: '%' + dataObj.name + '%'
         } // 模糊查询
-        // posts_id: id === 1 ? '%' + '1' + '%' : posts_id // 部门权限，过滤掉职位（ID1的超管忽视）
       },
       order: [
         ['id', 'DESC'] // 排序
       ],
       'limit': dataObj.pageSize * 1, // 每页多少条
       'offset': dataObj.pageSize * (dataObj.currentPage - 1) // 跳过多少条
-    })
+    }
+    if (id !== 1) {
+      sq.where.posts_id = posts_id// 部门权限，过滤掉职位（ID1的超管忽视）
+    }
+    return await Resume.findAndCountAll(sq)
   }
+
   /**
      * 详情
      * @param id
@@ -55,7 +59,7 @@ class ResumeModel {
       where: {
         id
       }
-      // fields: ['read_time', 'Interview_time']//	要插入/更新字段。默认全部
+    // fields: ['read_time', 'Interview_time']//	要插入/更新字段。默认全部
     })
   }
   /**

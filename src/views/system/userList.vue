@@ -7,7 +7,7 @@
         <el-input
           v-model="formInline.name"
           placeholder="请输入姓名"
-          style="width:210px;"
+          style="width:200px;"
           size="small"
           @keyup.enter.native="searchClick"
         />
