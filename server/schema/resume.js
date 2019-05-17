@@ -67,6 +67,19 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       field: 'remark2'
     },
+    // 入职背调
+    background: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'background'
+    },
+    // 工作年限
+    experience: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'experience'
+    },
+
     // 创建时间
     read_time: {
       type: DataTypes.DATE,

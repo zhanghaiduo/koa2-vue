@@ -162,7 +162,7 @@ export default {
         if (ok) {
           const data = await save(this.saveForm)
           this.$message({ type: 'success', message: data.msg })
-          this.fetchData()
+          this.fetchData(this.pageObj.currentPage)
           this.dialog = false
         }
       } catch {

@@ -13,8 +13,8 @@ class ResumeModel {
      * @param data
      */
   static async createResume(data) {
-    const { name, posts_id, phone, school, mail, status, score, remark, read_time, Interview_time, remark2, posts } = data
-    return await Resume.create({ name, posts_id, phone, school, mail, status, score, remark, read_time, Interview_time, remark2, posts })
+    const { name, posts_id, phone, school, mail, status, score, remark, read_time, Interview_time, remark2, posts, experience, background } = data
+    return await Resume.create({ name, posts_id, phone, school, mail, status, score, remark, read_time, Interview_time, remark2, posts, experience, background })
   }
   /**
      * 列表
@@ -33,8 +33,9 @@ class ResumeModel {
       'limit': dataObj.pageSize * 1, // 每页多少条
       'offset': dataObj.pageSize * (dataObj.currentPage - 1) // 跳过多少条
     }
-    if (id !== 1) {
-      sq.where.posts_id = posts_id// 部门权限，过滤掉职位（ID1的超管忽视）
+
+    if (id !== 1 && posts_id > 2) {
+      sq.where.posts_id = posts_id// 忽略权限，过滤掉职位 超管职位和人事职位（ID1的超管忽视）
     }
     return await Resume.findAndCountAll(sq)
   }

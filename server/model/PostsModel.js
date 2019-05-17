@@ -20,15 +20,18 @@ class PostsModel {
      * 部门列表
      * @param name //部门名称
      */
-  static async getPostsList(dataObj) {
-    console.log(dataObj)
-    return await Posts.findAll({
+  static async getPostsList(dataObj, id, posts_id) {
+    const sq = {
       where: {
         name: {
           like: '%' + (dataObj.name ? dataObj.name : '') + '%'
         }// 模糊查询
       }
-    })
+    }
+    if (id !== 1 && posts_id > 2) {
+      sq.where.id > 1// 部门权限，过滤掉超管职位（ID1的超管忽视）
+    }
+    return await Posts.findAll(sq)
   }
   /**
      * 查

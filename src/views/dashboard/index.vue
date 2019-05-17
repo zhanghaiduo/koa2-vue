@@ -3,7 +3,6 @@
     <div class="customContainer ">
       <!-- 搜索头 -->
       <div class="customHeader">
-        <!-- 搜索头 -->
         <el-input
           v-model="formInline.name"
           placeholder="请输入姓名"
@@ -11,35 +10,111 @@
           size="small"
           @keyup.enter.native="searchClick"
         />
-        <el-button type="primary" size="small" @click="searchClick">查询</el-button>
-        <el-button class="pull-right" type="primary" size="small" @click="addEditClick()">新增</el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="searchClick"
+        >查询</el-button>
+        <el-button
+          class="pull-right"
+          type="primary"
+          size="small"
+          @click="addEditClick()"
+        >新增</el-button>
       </div>
       <br>
       <!-- 表格 -->
       <div>
-        <el-table v-loading.body="listLoading" :data="list" element-loading-text="Loading" border size="mini" highlight-current-row>
-          <el-table-column align="center" label="ID" prop="id" width="50" />
-          <el-table-column align="center" label="名称" prop="name" width="80" />
-          <el-table-column align="center" label="职位" prop="posts" width="80" />
-          <el-table-column align="center" label="电话" prop="phone" width="120" />
-          <el-table-column align="center" label="学校" prop="school" width="400" />
-          <el-table-column align="center" label="阅读时间" width="140">
+        <el-table
+          v-loading.body="listLoading"
+          :data="list"
+          element-loading-text="Loading"
+          border
+          size="mini"
+          highlight-current-row
+        >
+          <el-table-column
+            align="center"
+            label="ID"
+            prop="id"
+            width="50"
+          />
+          <el-table-column
+            align="center"
+            label="名称"
+            prop="name"
+            width="80"
+          />
+          <el-table-column
+            align="center"
+            label="职位"
+            prop="posts"
+            width="80"
+          />
+          <el-table-column
+            align="center"
+            label="电话"
+            prop="phone"
+            width="120"
+          />
+          <el-table-column
+            align="center"
+            label="学校"
+            prop="school"
+          />
+          <el-table-column
+            align="center"
+            label="阅读时间"
+            width="140"
+          >
             <template slot-scope="scope">
               {{ scope.row.read_time|normalDate }}
             </template>
           </el-table-column>
-          <el-table-column align="center" label="面试时间" width="140">
+          <el-table-column
+            align="center"
+            label="面试时间"
+            width="140"
+          >
             <template slot-scope="scope">
               {{ scope.row.Interview_time|normalDate }}
             </template>
           </el-table-column>
-          <el-table-column align="center" label="邮箱" prop="mail" />
-          <el-table-column align="center" label="状态" prop="status_name" />
-          <el-table-column align="center" label="备注1" prop="remark" />
-          <el-table-column align="center" label="备注2" prop="remark2" />
-          <el-table-column align="center" label="操作" width="180">
+          <el-table-column
+            align="center"
+            label="得分"
+            prop="score"
+          />
+          <el-table-column
+            align="center"
+            label="入职背调"
+            prop="background"
+          />
+          <el-table-column
+            align="center"
+            label="状态"
+            prop="status_name"
+          />
+          <el-table-column
+            align="center"
+            label="部门备注"
+            prop="remark"
+          />
+          <el-table-column
+            align="center"
+            label="人事备注"
+            prop="remark2"
+          />
+          <el-table-column
+            align="center"
+            label="操作"
+            width="180"
+          >
             <template slot-scope="scope">
-              <el-button size="mini" @click="addEditClick(scope.row)">修改</el-button>
+              <el-button
+                size="mini"
+                @click="addEditClick(scope.row)"
+              >修改</el-button>
               <el-button
                 :disabled="scope.row.id===1"
                 size="mini"
@@ -50,21 +125,57 @@
           </el-table-column>
         </el-table>
         <!-- 弹框 -->
-        <el-dialog :title="dialoTitle" :visible.sync="dialog" :inline="true" append-to-body width="400px" style="margin-top:-5vh" @close="callOf('saveForm')">
-          <el-form ref="saveForm" class="resumeForm" :model="saveForm" :rules="rules">
-            <el-form-item label="　姓 名" prop="name">
+        <el-dialog
+          :title="dialoTitle"
+          :visible.sync="dialog"
+          :inline="true"
+          append-to-body
+          width="400px"
+          style="margin-top:-10vh"
+          @close="callOf('saveForm')"
+        >
+          <el-form
+            ref="saveForm"
+            class="resumeForm"
+            :model="saveForm"
+            :rules="rules"
+          >
+            <el-form-item
+              label="　姓 名"
+              prop="name"
+            >
               <el-input v-model="saveForm.name" />
             </el-form-item>
-            <el-form-item label="　职 位 " prop="posts_id">
+            <el-form-item
+              label="　职 位 "
+              prop="posts_id"
+            >
               <el-select v-model="saveForm.posts_id">
-                <el-option v-for="item in posts_list" :key="item.id" :label="item.name" :value="item.id" />
+                <el-option
+                  v-for="item in posts_list"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                />
               </el-select>
             </el-form-item>
             <el-form-item label="　　电话">
               <el-input v-model="saveForm.phone" />
             </el-form-item>
+            <el-form-item label="工作年限">
+              <el-input v-model="saveForm.experience" />
+            </el-form-item>
+            <el-form-item label="入职背调">
+              <el-input
+                v-model="saveForm.background"
+                type="textarea"
+              />
+            </el-form-item>
             <el-form-item label="　　学校">
-              <el-input v-model="saveForm.school" type="textarea" />
+              <el-input
+                v-model="saveForm.school"
+                type="textarea"
+              />
             </el-form-item>
             <el-form-item label="阅读时间">
               <el-date-picker
@@ -87,18 +198,39 @@
             </el-form-item>
             <el-form-item label="　　状态">
               <el-select v-model="saveForm.status">
-                <el-option v-for="item in status_list" :key="item.id" :label="item.name" :value="item.id" />
+                <el-option
+                  v-for="item in status_list"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                />
               </el-select>
             </el-form-item>
-            <el-form-item label="　　备注">
-              <el-input v-model="saveForm.remark" type="textarea" />
+            <el-form-item label="　　得分">
+              <el-input v-model="saveForm.score" />
             </el-form-item>
-            <el-form-item label="　备注二">
-              <el-input v-model="saveForm.remark2" type="textarea" />
+            <el-form-item label="部门备注">
+              <el-input
+                v-model="saveForm.remark"
+                type="textarea"
+              />
+            </el-form-item>
+            <el-form-item label="人事备注">
+              <el-input
+                v-model="saveForm.remark2"
+                type="textarea"
+              />
             </el-form-item>
           </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button type="primary" size="small" @click="saveClick()">确认</el-button>
+          <div
+            slot="footer"
+            class="dialog-footer"
+          >
+            <el-button
+              type="primary"
+              size="small"
+              @click="saveClick()"
+            >确认</el-button>
           </div>
         </el-dialog>
       </div>
@@ -127,7 +259,7 @@ export default {
   data() {
     return {
       dialoTitle: '',
-      status_list: [{ name: '简历初选不过', id: 0 }, { name: '简历筛选通过', id: 1 }, { name: '已面试', id: 2 }],
+      status_list: [{ name: '简历初选不过', id: 0 }, { name: '简历筛选通过', id: 1 }, { name: '已面试', id: 2 }, { name: '录用', id: 3 }, { name: '储备', id: 4 }, { name: '不录用', id: 5 }, { name: '永不录用', id: 6 }, { name: '邀约未到面', id: 7 }],
       list: null,
       listLoading: false,
       dialog: false,
@@ -152,7 +284,9 @@ export default {
         remark: '',
         read_time: '',
         Interview_time: '',
-        remark2: ''
+        remark2: '',
+        background: '',
+        experience: ''
       },
       rules: {
         name: [
@@ -188,7 +322,7 @@ export default {
         if (ok) {
           const data = await save(this.saveForm)
           this.$message({ type: 'success', message: data.msg })
-          this.fetchData()
+          this.fetchData(this.pageObj.currentPage)
           this.dialog = false
         }
       } catch {
@@ -207,6 +341,8 @@ export default {
       this.saveForm.score = row ? row.score : ''
       this.saveForm.remark = row ? row.remark : ''
       this.saveForm.remark2 = row ? row.remark2 : ''
+      this.saveForm.experience = row ? row.experience : ''
+      this.saveForm.background = row ? row.background : ''
       this.saveForm.Interview_time = row ? row.Interview_time : ''
       this.saveForm.read_time = row ? row.read_time : ''
       this.dialog = true
@@ -236,7 +372,6 @@ export default {
         const data = await getList(d)
         if (data.data) {
           data.data.rows.forEach(val => {
-            // val.posts_name = this.posts_list.find(v => val.posts_id === v.id).name
             val.status_name = this.status_list.find(v => val.status === v.id).name
           })
           this.list = data.data.rows
@@ -264,12 +399,14 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.resumeForm{
- .el-input,.el-textarea,.el-select{
-   width: 280px;
- }
+.resumeForm {
+  .el-input,
+  .el-textarea,
+  .el-select {
+    width: 280px;
+  }
 }
-.el-form-item{
+.el-form-item {
   margin-bottom: 10px;
 }
 </style>

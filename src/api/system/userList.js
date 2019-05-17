@@ -14,7 +14,6 @@ export function del(data) {
   })
 }
 export function save(data) {
-  console.log(data.id)
   const url = data.id ? '/api/superAuth/account_update' : '/api/superAuth/account_create'
   return request({
     url: url,

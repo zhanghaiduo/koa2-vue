@@ -1,5 +1,5 @@
 const PostsModel = require('../model/PostsModel')
-
+const getToken = require('../token/getToken')
 class postsController {
   /**
      * 创建
@@ -38,9 +38,10 @@ class postsController {
      * @returns {Promise.<void>}
      */
   static async posts_list(ctx) {
+    const tokenContent = await getToken(ctx)
     const dataObj = ctx.request.body
     try {
-      const data = await PostsModel.getPostsList(dataObj)
+      const data = await PostsModel.getPostsList(dataObj, tokenContent.id, tokenContent.posts_id)
       ctx.body = {
         code: 1,
         msg: '查询成功',
