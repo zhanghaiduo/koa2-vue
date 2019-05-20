@@ -41,7 +41,7 @@ class postsController {
     const tokenContent = await getToken(ctx)
     const dataObj = ctx.request.body
     try {
-      const data = await PostsModel.getPostsList(dataObj, tokenContent.id, tokenContent.posts_id)
+      const data = await PostsModel.getPostsList(dataObj, tokenContent.posts_id)
       ctx.body = {
         code: 1,
         msg: '查询成功',

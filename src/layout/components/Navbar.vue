@@ -31,7 +31,7 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-    <div class="right-menu name-item"> {{ USER_INFO.id===1 ?'超级管理员':USER_INFO.posts }} - {{ USER_INFO.name }}</div>
+    <div class="right-menu name-item"> {{ USER_INFO.posts }} - {{ USER_INFO.name }}</div>
   </div>
 </template>
 

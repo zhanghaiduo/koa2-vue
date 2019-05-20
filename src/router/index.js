@@ -68,7 +68,7 @@ export const constantRoutes = [
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
-if (localStorage.getItem('USER_INFO') && JSON.parse(localStorage.getItem('USER_INFO')).id === 1) {
+if (localStorage.getItem('USER_INFO') && JSON.parse(localStorage.getItem('USER_INFO')).posts_id === 1) {
   constantRoutes.push(superAuthRouter)
 }
 const createRouter = () => new Router({

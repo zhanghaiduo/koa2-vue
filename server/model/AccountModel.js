@@ -14,15 +14,14 @@ class AccountModel {
      * @returns {Promise<*>}
      */
   static async createAccount(data) {
-    const { username, password, name, posts_id } = data
-    return await Account.create({ username, password, name, posts_id })
+    const { username, password, name, posts_id, posts } = data
+    return await Account.create({ username, password, name, posts_id, posts })
   }
   /**
      * 查列表
      * @param title
      */
   static async getAccountList(dataObj) {
-    console.log(dataObj)
     return await Account.findAndCountAll({
       where: {
         name: {
