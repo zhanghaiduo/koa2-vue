@@ -137,6 +137,32 @@ class resumeController {
       }
     }
   }
+  /**
+     * 初始化  按照职位表给简历列表旧的职位赋值posts_id
+     * @param ctx
+     * @returns {Promise.<void>}
+     */
+  static async resume_add_posts_id_script(ctx) {
+    try {
+      const resumeData = await ResumeModel.resumeFindAll()
+      const postsData = await PostsModel.getPostsList({})
+      for (let i = 0; i < resumeData.length; i++) {
+        resumeData[i].posts_id = postsData.find(v => v.name === resumeData[i].posts) ? postsData.find(v => v.name.trim() === resumeData[i].posts.trim()).dataValues.id : ''
+        await ResumeModel.updateResume(resumeData[i].id, { posts_id: resumeData[i].posts_id })
+      }
+      ctx.body = {
+        code: 1,
+        data: resumeData,
+        msg: '更新成功'
+      }
+    } catch (err) {
+      ctx.body = {
+        code: -1,
+        data: err,
+        msg: '更新失败'
+      }
+    }
+  }
 }
 
 module.exports = resumeController

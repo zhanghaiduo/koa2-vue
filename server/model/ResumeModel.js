@@ -74,6 +74,12 @@ class ResumeModel {
       }
     })
   }
+  //  查所有不要分页
+  static async resumeFindAll() {
+    return await Resume.findAll({
+      'limit': 9999
+    })
+  }
 }
 
 module.exports = ResumeModel

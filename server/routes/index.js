@@ -4,7 +4,7 @@ const AccountController = require('../controller/Account')
 const PostsController = require('../controller/Posts')
 // 服务器判断token是否是合法的
 // 如果以后有哪些请求需要登录后才可以得到数据，在路由中加上checkToken
-// 需要ID为1超管才能访问的接口，在路由前面加上/superAuth
+// 需要第一个部门posts_id为1（超管权限组）部门组的人才能访问的接口，在路由前面加上/superAuth
 const checkToken = require('../token/checkToken')
 const subRouter = new Router()
 // 登陆
@@ -33,6 +33,8 @@ subRouter.post('/resume_detail', ResumeController.resume_detail)
 subRouter.post('/resume_del', checkToken, ResumeController.resume_del)
 // 改
 subRouter.post('/resume_update', checkToken, ResumeController.resume_update)
+// 按照职位表给简历列表旧的职位赋值posts_id
+subRouter.get('/resume_add_posts_id_script', ResumeController.resume_add_posts_id_script)
 
 // 部门----------
 // 增
