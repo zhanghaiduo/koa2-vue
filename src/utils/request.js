@@ -43,22 +43,21 @@ service.interceptors.response.use(
     /**
      * code为非1是抛错 可结合自己业务进行修改
      */
-    if (getToken()) {
-    }// 每次请求刷新cookie时间
     const res = response.data
     if (res.code && res.code !== 1) {
       Message({ message: res.msg, type: 'error', duration: 5 * 1000 })
-      if (res.code === -886) {
-        removeToken()
-      }
       return Promise.reject('error')
     } else {
       return response.data
     }
   },
   error => {
-    console.log('err' + error) // for debug
+    console.log(JSON.stringify(error).includes('401')) // for debug
     Message({ message: error, type: 'error', duration: 5 * 1000 })
+    if (JSON.stringify(error).includes('401')) {
+      Message({ message: 'token无效了，请重新登录', type: 'error', duration: 5 * 1000 })
+      removeToken()
+    }
     if (error === 'Cancel') {
       return Promise.reject('重复点击请求关闭', error)
     } else if (error.includes('err')) {
