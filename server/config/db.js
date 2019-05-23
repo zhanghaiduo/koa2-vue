@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('cms_koa2', 'root', '', {
+const sequelize = new Sequelize('数据库名', '账号', '密码', {
   host: 'localhost',
   dialect: 'mysql',
   operatorsAliases: true,

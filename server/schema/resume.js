@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user_copy_20181031', {
+  return sequelize.define('user', {
     // ID
     id: {
       type: DataTypes.INTEGER,

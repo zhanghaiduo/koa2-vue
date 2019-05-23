@@ -15,7 +15,7 @@ app.use(bodyParser())
 app.use(router.routes(), router.allowedMethods())
 app.use(KoaLogger())
 
-app.listen(3000, () => {
-  console.log('3000端口ok')
+app.listen(4471, () => {
+  console.log('4471端口ok')
 })
 
