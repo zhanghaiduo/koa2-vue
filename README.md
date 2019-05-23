@@ -12,6 +12,19 @@
     - 用户列表
     - 职位列表....
 
+## 可能遇到的问题
+```
+由于koa2需要node7版本以上支持， CentOS 无法通过 yum 安装新版 nodejs 解决办法
+第一步：
+curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+第二步：
+sudo yum clean all
+如果以上步骤不能安装 最新版 node，执行以下命令后再执行第二步：
+sudo yum clean all
+如果存在多个 nodesoucre，执行以下命令删除，然后重新执行第一第二步：：
+sudo rm -fv /etc/yum.repos.d/nodesource*
+
+```
 
 ## Project setup
 ```
